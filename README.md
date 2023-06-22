@@ -4,13 +4,13 @@
 
 ## Usage
 1. Clone this repository.
-2. If you have ```cargo``` installed on your system, go to the cloned directory and run ```cargo build --release```. You can find the compiled executable in target/release/cpu-sim (or cpu-sim.exe) if you are on Windows.
+2. If you have [cargo](https://crates.io/) installed on your system, go to the cloned directory and run ```cargo build --release```. You can find the compiled executable in ```./target/release/cpu-sim``` (or ```cpu-sim.exe``` if you are on Windows).
 3. If you don't have cargo installed, there are already two compiled binaries in this repository's root.
-	- cpu-sim was compiled on an Artix Linux x86_64 system. It should execute as expected on most 64-bit linux distributions. Navigate to this directory and run ```./cpu-sim --help```
+	- ```cpu-sim``` was compiled on an Artix Linux x86_64 system. It should execute as expected on most 64-bit linux distributions. Navigate to this directory and run ```./cpu-sim --help```
 	
-	- cpu-sim.exe was compiled on a Windows 11 64-bit system. This should also execute as expected on Windows 10 or 11 64-bit systems. Navigate to this directory using your command prompt and run ```cpu-sim.exe --help```
+	- ```cpu-sim.exe``` was compiled on a Windows 11 64-bit system. This should also execute as expected on Windows 10 or 11 64-bit systems. Navigate to this directory using your command prompt and run ```cpu-sim.exe --help```
 	
-	If these binaries refuse to show any output when executed, then install cargo on your system and follow step 2 to compile the program on your own OS.
+	If these binaries refuse to show any output when executed, then install [cargo](https://crates.io/) on your system and follow step 2 to compile the program on your own OS.
 
 ```
 $ ./cpu-sim --help

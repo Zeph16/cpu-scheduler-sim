@@ -1,4 +1,4 @@
-use crate::{data_types::{Proc, Status}, utils::{sort_by_arrival, sort_by_burst}};
+use crate::{data_types::{Proc, Status}, utils::{sort_by_arrival, sort_by_burst, sort_by_remaining_burst}};
 
 pub fn rr(initial: &mut Vec<Proc>, quantum: u32, trace: bool) -> u32 {
     let mut tick = 0;
@@ -122,7 +122,7 @@ pub fn psjf(proc_list: &mut Vec<Proc>, trace: bool) -> u32 {
                         proc.status = Status::Ready;
                         
 
-                        if current_index == usize::MAX && (!running || proc.burst_time < current.burst_time) {
+                        if current_index == usize::MAX && (!running || proc.burst_time < current.remaining_burst_time) {
                             proc.status = Status::Running;
                             current_index = i;
                         } else {
@@ -142,7 +142,6 @@ pub fn psjf(proc_list: &mut Vec<Proc>, trace: bool) -> u32 {
                     if !running && current_index == usize::MAX {
                         proc.status = Status::Running;
                         current_index = i;
-                        println!("Running {running}, PID {}, current {}", proc.pid, current.pid);
                     } else {
                         proc.trace.push_str(". ");
                     }
@@ -158,7 +157,7 @@ pub fn psjf(proc_list: &mut Vec<Proc>, trace: bool) -> u32 {
                 current.trace.push_str(". ");
                 current.status = Status::Ready;
                 proc_list.push(current);
-                sort_by_burst(proc_list);
+                sort_by_remaining_burst(proc_list);
             }
             current = proc_list.remove(current_index);
             running = true;

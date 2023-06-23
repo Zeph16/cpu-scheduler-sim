@@ -20,7 +20,6 @@ pub fn rr(initial: &mut Vec<Proc>, quantum: u32, trace: bool) -> u32 {
             println!("- Tick {} -", tick + 1);
         }
 
-
         to_current_index = usize::MAX;
 
 
@@ -35,6 +34,10 @@ pub fn rr(initial: &mut Vec<Proc>, quantum: u32, trace: bool) -> u32 {
         for index in to_ready_indexes.iter() {
             ready.push(initial[*index].clone());
         }
+        if quantum_left == 0 {
+            ready.push(current.clone());
+        }
+
         initial.retain(|x| x.arrival_time != tick);
         to_ready_indexes.clear();
 
@@ -77,9 +80,6 @@ pub fn rr(initial: &mut Vec<Proc>, quantum: u32, trace: bool) -> u32 {
             }
         }
         quantum_left -= 1;
-        if quantum_left == 0 {
-            ready.push(current.clone());
-        }
 
         tick += 1;
         if trace {

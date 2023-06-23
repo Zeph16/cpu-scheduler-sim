@@ -11,7 +11,7 @@
 	
 	- ```cpu-sim.exe``` was compiled on a Windows 11 64-bit system. This should also work as expected on Windows 10 or 11 64-bit systems. <br />
  		- Navigate to the ```bin``` directory in cmd or powershell
-   		- Run ```cpu-sim.exe --help```
+   		- Run ```.\cpu-sim.exe --help```
 	
 	If these binaries refuse to show any output when executed, then install [cargo](https://crates.io/) on your system and follow step 2 to compile the program on your own OS.
 

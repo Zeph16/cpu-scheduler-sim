@@ -24,7 +24,7 @@ struct Args {
     jobs: String,
 
     /// Time quantum in the case of Round Robin scheduling policy
-    #[arg(short, long, default_value_t = 2)]
+    #[arg(short, long, default_value_t = 2, value_parser = clap::value_parser!(u32).range(1..))]
     quantum: u32,
 
     /// Dump complete cpu trace

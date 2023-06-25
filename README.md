@@ -28,6 +28,8 @@ Arguments:
           - fcfs: First-Come-First-Serve (Same as FIFO)
           - sjf:  Shortest-Job-First
           - psjf: Preemptive-Shortest-Job-First
+          - stcf: Shortest-Time-to-Completion-First (Same as PSJF)
+          - srtf: Shortest-Remaining-Time-First (Same as PSJF)
           - rr:   Round-Robin
 
 Options:
@@ -55,7 +57,7 @@ Options:
 ```
 
 
-# Main takeaways
+# Main Takeaways
 
 This scheduler supports the following scheduling policies as of now:<br/>
   - FIFO/FCFS: **First-In-First-Out**
@@ -66,10 +68,10 @@ This scheduler supports the following scheduling policies as of now:<br/>
   It will simulate the whole timeline of process execution based on the given "job" or process list and give you a summary plus something resembling a Gantt chart. The summary is a table by default, but you can also pass the --minimal or -m flag to show a simpler summary.
 
 - This repository was made purely for educational purposes, so code optimization was NOT an intention. Speed and memory efficiency were exchanged for more declarative code at any place possible.
-- The code currently needs refactoring because I decided to change the way I approached the algorithms mid way while developing them. Pieces of code should be extracted as functions to be more declarative and redundant/unnecessary ones should be removed.
-- As of now, the code for the **Round-Robin** policy is the most declaratively written algo out of the 4 available. The code for the others should be changed to be similarly more declarative as well, hopefully soon.
+- The code is more or less self documenting but I've added comments in key steps of the algo to aid non-rustaceans that want to look into the code. So don't be intimidated to go through the code (especially the [scheduler](https://github.com/Zeph16/cpu-scheduler-sim/blob/main/src/handler/mod.rs) function) and see how it's written!
+- ~~As of now, the code for the **Round-Robin** policy is the most declaratively written algo out of the 4 available. The code for the others should be changed to be similarly more declarative as well, hopefully soon.~~ The algorithms for all policies are now meshed into one scheduler function, which follows even more declarative methods than before.
 
-### Sample execution
+### Sample Execution
 ```
 $ ./cpu-sim fifo --jobs 0:4,2:2,3:5 --minimal
 *** CPU Scheduling Policy: FIFO/FCFS - First Come First Serve ***
@@ -95,5 +97,7 @@ Statistics:
 <br/>
 <br/>
 
-**P.S.** This project was a spontaneous decision and built with a sudden burst of energy in a day so there are bound to be some code smells here and there. If I decide to focus on it, I'll definitely refactor the code to make it a bit more declarative and comfortable to go through and understand even if you're not experienced with Rust.
+### Library Crates Used
+- [clap](https://github.com/clap-rs/clap)
+- [tabled](https://github.com/zhiburt/tabled)
 
